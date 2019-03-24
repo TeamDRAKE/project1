@@ -15,6 +15,8 @@ class TCPClient {
 
   String modifiedSentence;
 
+while(true)
+{
 BufferedReader inFromUser = new BufferedReader(new 
 InputStreamReader(System.in));
 
@@ -26,7 +28,7 @@ DataOutputStream(clientSocket.getOutputStream());
 
   BufferedReader inFromServer = new BufferedReader(new 
 InputStreamReader(clientSocket.getInputStream()));
- 
+
 
      sentence = inFromUser.readLine();
    
@@ -37,8 +39,9 @@ InputStreamReader(clientSocket.getInputStream()));
 
   System.out.println("FROM SERVER: " + modifiedSentence);
 
-  clientSocket.close();
 
- }
+  clientSocket.close();
+}
+}
 
 }
