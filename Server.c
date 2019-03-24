@@ -21,7 +21,7 @@ int main( int argc, char *argv[] )
 	int mysock;
 	char buff [1024];
 	int rval;
-	char server_message[256] = "Bonjour" ;
+	char server_message[256] ;
 
 	// Create Socket
 	sock = socket(AF_INET, SOCK_STREAM , 0);
@@ -50,11 +50,8 @@ int main( int argc, char *argv[] )
 	do{
 		mysock = accept(sock , (struct sockaddr *) 0, 0);	
 			 
-	        recv(mysock, buff, sizeof(buff), 1);
-			
-		send(mysock,server_message,sizeof(server_message),0);
-
-
+	        Previous:
+	 
 		if(mysock == -1)
 		{
 			perror("accept failed");
@@ -70,23 +67,23 @@ int main( int argc, char *argv[] )
 		else if (rval == 0)
 		{ printf("Ending connection");  }
 
-
 		else 
   		{
 
-		 printf("MSG: %s", buff);
+        	 recv(mysock, buff, sizeof(buff), 1);
+		 printf("From Client: %s", buff);
 		 recv(mysock, buff, sizeof(buff), 0);
+		 printf("%s",buff);
+		 printf("\n");
 		 
-		  printf("%s\n",buff);
-		}		 
-
-
-		printf("\nGot the message\n");
-			
-
-
+		//goto Previous; 
+		
+		scanf ("%[^\n]%*c", server_message);
+			 
+                send(mysock,server_message,strlen(server_message),0);
+		}
+		
 		close(mysock);
-
 		}
 	}while(1);
 
