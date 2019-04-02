@@ -14,6 +14,36 @@ class TCPClient {
   String sentence;
 
   String modifiedSentence;
+ 
+  Scanner n = new Scanner(System.in);
+
+  System.out.print("Do you want to ping or send message ? ( 1 - Ping , 2 - Message) \n");
+
+    int input = n.nextInt();
+ 
+ if(input == 1)
+{
+    
+    String ipAddress = "192.168.136.128"; 
+
+    InetAddress geek = InetAddress.getByName(ipAddress); 
+
+    System.out.println("Sending Ping Request to " + ipAddress); 
+
+    if (geek.isReachable(5000)) 
+
+      System.out.println("Host is reachable"); 
+
+    else
+
+      System.out.println("Sorry ! We can't reach to this host"); 
+
+}
+
+
+
+else
+{
 
 while(true)
 {
@@ -43,5 +73,5 @@ InputStreamReader(clientSocket.getInputStream()));
   clientSocket.close();
 }
 }
-
+}
 }
